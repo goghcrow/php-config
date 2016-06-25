@@ -157,7 +157,7 @@ assert(Config::get("store.mysql.master.user") === "product_user");
 assert(Config::get("dict.App") === "Config");
 ```
 
-**ConfigGen 对象配置生成器**
+**ConfigGen 配置对象属性代码生成**
 
 ```php
 <?php
