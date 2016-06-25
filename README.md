@@ -35,6 +35,8 @@
 
 ### 3. 配置示例
 
+mysql.php
+
 ```php
 return [
     "default" => [
@@ -61,6 +63,67 @@ default项目为默认配置
 
 所有子项继承default项目配置, 同名key覆盖default
 
+dict.php
+
+```php
+return [
+    "App" => "Config",
+    "Version" => "0.1",
+    "reference" => "Zan-config",
+    "coder" => "xiaofeng",
+];
+```
+
+
+加载dev环境的配置, getAll()的结果如下:
+```php
+Config::load(__DIR__ . "/Conf", "dev");
+Config::getAll()
+
+Array
+(
+    [dict] => Array
+        (
+            [App] => Config
+            [Version] => 0.1
+            [reference] => Zan-config
+            [coder] => xiaofeng
+        )
+
+    [store] => Array
+        (
+            [mysql] => Array
+                (
+                    [master] => Array
+                        (
+                            [port] => 3306
+                            [user] => dev_user
+                            [host] => 192.168.0.1
+                            [password] => pwd_master
+                        )
+
+                    [cluster1] => Array
+                        (
+                            [port] => 3306
+                            [user] => dev_user
+                            [host] => 192.168.0.1
+                            [password] => pwd_cluster1
+                        )
+
+                    [cluster2] => Array
+                        (
+                            [port] => 3307
+                            [user] => dev_user
+                            [host] => 192.168.0.1
+                            [password] => pwd_cluster2
+                        )
+
+                )
+
+        )
+
+)
+```
 
 ### 4. 代码
 
@@ -106,8 +169,9 @@ require_once __DIR__ . "/../src/bootstrap.php";
 Config::load(__DIR__ . "/Conf", "dev");
 assert(Config::getAll());
 
+// 生成代码, 并require
+// 生成具体的代码见下方
 $conf = ConfigGen::requireOnce(Config::getAll(), __DIR__);
-// 生成代码见下方
 
 assert($conf);
 assert($conf->store->mysql->master->port === 3306);
