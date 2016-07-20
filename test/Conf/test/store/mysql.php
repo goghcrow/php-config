@@ -7,7 +7,7 @@
  */
 
 return [
-    "default" => [
+    "share" => [
         "port" => 3307,
         "user" => "test_user",
     ],

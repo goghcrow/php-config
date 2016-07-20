@@ -20,8 +20,17 @@ use InvalidArgumentException;
  */
 class Config
 {
+    /**
+     * 公共配置文件夹名称,其他配置均继承自此文件夹配置
+     * 按照 recursiveMerge 策略 覆盖
+     */
     const SHARE_DIR = "share";
-    const DEFAULT_CONF_ITEM = "default";
+
+    /**
+     * 单个配置文件公共配置项,其他配置项目均继承自此项
+     * 按照 recursiveMerge 策略 覆盖
+     */
+    const DEFAULT_CONF_ITEM = "share";
 
     protected static $conf;
 
